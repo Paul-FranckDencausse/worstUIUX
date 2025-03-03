@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire Impossible</title>
+    <style>
+        body {
+            background-color: #ff00ff;
+            color: yellow;
+            font-family: 'Comic Sans MS', cursive;
+            text-align: center;
+        }
+        input {
+            font-size: 24px;
+            padding: 10px;
+            border: 5px dashed black;
+            background-color: cyan;
+        }
+        .hidden-submit {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Remplis ce formulaire... si tu peux</h1>
+    <form onsubmit="return blockSubmission()">
+        <label for="name">Nom :</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">Email :</label>
+        <input type="email" id="email" name="email" required onfocus="changePlaceholder(this)"><br><br>
+
+        <label for="phone">Téléphone :</label>
+        <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" onmouseover="moveField(this)"><br><br>
+
+        <button type="submit" class="hidden-submit">Envoyer</button>
+    </form>
+    
+    <script>
+        function blockSubmission() {
+            alert("Oups, une erreur inconnue est survenue. Réessayez encore et encore.");
+            return false;
+        }
+        function moveField(field) {
+            field.style.position = 'absolute';
+            field.style.top = Math.random() * window.innerHeight + 'px';
+            field.style.left = Math.random() * window.innerWidth + 'px';
+        }
+        function changePlaceholder(input) {
+            input.placeholder = "Tape vite avant que ça disparaisse...";
+            setTimeout(() => { input.placeholder = ""; }, 1000);
+        }
+    </script>
+</body>
+</html>
